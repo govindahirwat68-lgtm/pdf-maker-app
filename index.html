@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">📄</span><div><b>PDF Maker</b><small>Create • Edit • Share</small></div></div>
+  <button id="themeBtn" class="icon-btn" title="Toggle theme">🌙</button>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Create PDF in seconds</h1>
+    <p>Turn images and text into a clean PDF directly in your browser.</p>
+  </section>
+
+  <section class="tools">
+    <button class="tool" id="imageBtn"><span>📷</span><b>Images → PDF</b><small>Multiple images</small></button>
+    <button class="tool" id="textBtn"><span>📝</span><b>Text → PDF</b><small>Write & export</small></button>
+    <button class="tool" id="mergeBtn"><span>📑</span><b>Merge PDFs</b><small>Coming soon</small></button>
+    <button class="tool" id="compressBtn"><span>🗜️</span><b>Compress</b><small>Coming soon</small></button>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Image to PDF</h2><button id="clearBtn" class="text-btn">Clear</button></div>
+    <div id="dropZone" class="drop-zone">
+      <div class="upload-icon">⬆️</div>
+      <h3>Choose images</h3>
+      <p>JPG, PNG, WEBP • Select multiple files</p>
+      <button id="chooseBtn" class="primary">Choose Images</button>
+      <input id="imageInput" type="file" accept="image/*" multiple hidden>
+    </div>
+    <div id="preview" class="preview"></div>
+    <div class="options">
+      <label>Page size
+        <select id="pageSize"><option value="a4">A4</option><option value="letter">Letter</option></select>
+      </label>
+      <label>Orientation
+        <select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select>
+      </label>
+      <label>Quality
+        <select id="quality"><option value="1">High</option><option value=".8">Medium</option><option value=".6">Small file</option></select>
+      </label>
+    </div>
+    <button id="makePdf" class="primary wide">📄 Create PDF</button>
+  </section>
+
+  <section class="panel text-panel">
+    <div class="panel-head"><h2>Text to PDF</h2></div>
+    <input id="pdfTitle" class="input" placeholder="Document title">
+    <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+    <button id="textPdf" class="primary wide">📝 Export Text as PDF</button>
+  </section>
+
+  <section>
+    <h2 class="recent-title">Recent files</h2>
+    <div id="recent" class="recent"></div>
+  </section>
+</main>
+
+<footer>PDF Maker • Files are processed in your browser</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
