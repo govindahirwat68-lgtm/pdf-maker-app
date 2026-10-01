@@ -1,70 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF Maker</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Maker Studio V4</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="brand"><span class="logo">📄</span><div><b>PDF Maker</b><small>Create • Edit • Share</small></div></div>
-  <button id="themeBtn" class="icon-btn" title="Toggle theme">🌙</button>
-</header>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon">✦</div><div><b>PDF Maker</b><small>Studio V4</small></div></div>
+      <nav>
+        <button class="nav active" data-tab="dashboard">🏠 Dashboard</button>
+        <button class="nav" data-tab="builder">📄 PDF Builder</button>
+        <button class="nav" data-tab="designer">🎨 Page Designer</button>
+        <button class="nav" data-tab="editor">✍️ Editor</button>
+        <button class="nav" data-tab="utilities">🛠 PDF Tools</button>
+        <button class="nav" data-tab="files">📁 My Files</button>
+      </nav>
+      <div class="side-card"><b>V4 Engine</b><p>Browser-side PDF operations powered by pdf-lib.</p></div>
+      <button id="themeBtn" class="theme">🌙 Toggle Theme</button>
+    </aside>
 
-<main>
-  <section class="hero">
-    <h1>Create PDF in seconds</h1>
-    <p>Turn images and text into a clean PDF directly in your browser.</p>
-  </section>
+    <main>
+      <header class="topbar">
+        <div><span class="eyebrow">CREATIVE DOCUMENT WORKSPACE</span><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><button class="glass" onclick="showTab('builder')">＋ New PDF</button></div>
+      </header>
 
-  <section class="tools">
-    <button class="tool" id="imageBtn"><span>📷</span><b>Images → PDF</b><small>Multiple images</small></button>
-    <button class="tool" id="textBtn"><span>📝</span><b>Text → PDF</b><small>Write & export</small></button>
-    <button class="tool" id="mergeBtn"><span>📑</span><b>Merge PDFs</b><small>Coming soon</small></button>
-    <button class="tool" id="compressBtn"><span>🗜️</span><b>Compress</b><small>Coming soon</small></button>
-  </section>
+      <section id="dashboard" class="tab active">
+        <div class="hero">
+          <div><span class="pill">✨ V4 • Enhanced PDF Engine</span><h2>Create, design & manage PDFs</h2>
+          <p>Build documents, edit pages, merge files, reorder pages, add watermarks and export directly in your browser.</p>
+          <button class="primary" onclick="showTab('builder')">Start Creating →</button></div>
+          <div class="orb"><span>PDF</span></div>
+        </div>
+        <div class="stats"><div><b id="statPages">0</b><span>Builder Pages</span></div><div><b>10+</b><span>PDF Tools</span></div><div><b>100%</b><span>Local Processing</span></div><div><b>V4</b><span>Engine</span></div></div>
+        <div class="section-title"><h3>Quick Actions</h3></div>
+        <div class="cards">
+          <div class="card" onclick="showTab('builder')"><i>🖼️</i><h3>Images → PDF</h3><p>Turn multiple images into a polished PDF.</p></div>
+          <div class="card" onclick="showTab('utilities')"><i>🔗</i><h3>Merge PDFs</h3><p>Combine multiple PDF files into one document.</p></div>
+          <div class="card" onclick="showTab('utilities')"><i>✂️</i><h3>Split PDF</h3><p>Extract selected pages into a new PDF.</p></div>
+          <div class="card" onclick="showTab('designer')"><i>🎨</i><h3>Design Page</h3><p>Apply colors, headers and footer styling.</p></div>
+        </div>
+      </section>
 
-  <section class="panel">
-    <div class="panel-head"><h2>Image to PDF</h2><button id="clearBtn" class="text-btn">Clear</button></div>
-    <div id="dropZone" class="drop-zone">
-      <div class="upload-icon">⬆️</div>
-      <h3>Choose images</h3>
-      <p>JPG, PNG, WEBP • Select multiple files</p>
-      <button id="chooseBtn" class="primary">Choose Images</button>
-      <input id="imageInput" type="file" accept="image/*" multiple hidden>
-    </div>
-    <div id="preview" class="preview"></div>
-    <div class="options">
-      <label>Page size
-        <select id="pageSize"><option value="a4">A4</option><option value="letter">Letter</option></select>
-      </label>
-      <label>Orientation
-        <select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select>
-      </label>
-      <label>Quality
-        <select id="quality"><option value="1">High</option><option value=".8">Medium</option><option value=".6">Small file</option></select>
-      </label>
-    </div>
-    <button id="makePdf" class="primary wide">📄 Create PDF</button>
-  </section>
+      <section id="builder" class="tab">
+        <div class="panel">
+          <div class="panel-head"><div><h2>PDF Builder</h2><p>Arrange pages visually, then export.</p></div>
+          <div class="actions"><label class="secondary">＋ Add Images<input id="imageInput" type="file" accept="image/*" multiple hidden></label><button class="secondary" id="blankBtn">＋ Blank Page</button><button class="danger" id="clearBtn">Clear</button><button class="primary" id="exportBtn">Export PDF</button></div></div>
+          <div class="builder-grid">
+            <div id="dropZone" class="dropzone"><div class="drop-icon">☁</div><h3>Drop images here</h3><p>or use “Add Images” above</p><small>Drag thumbnails to reorder pages</small></div>
+            <div class="settings">
+              <h3>Document Settings</h3>
+              <label>Page Size<select id="pageSize"><option value="a4">A4</option><option value="letter">Letter</option><option value="a5">A5</option></select></label>
+              <label>Orientation<select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+              <label>Margin <input id="margin" type="range" min="0" max="30" value="8"><span id="marginVal">8 mm</span></label>
+              <label>JPEG Quality <input id="quality" type="range" min="0.5" max="1" step="0.05" value="0.85"><span id="qualityVal">85%</span></label>
+              <div class="tip">💡 Drag a page thumbnail to change its position.</div>
+            </div>
+          </div>
+          <div class="thumb-head"><h3>Pages</h3><span id="pageCount">0 pages</span></div>
+          <div id="thumbs" class="thumbs"></div>
+        </div>
+      </section>
 
-  <section class="panel text-panel">
-    <div class="panel-head"><h2>Text to PDF</h2></div>
-    <input id="pdfTitle" class="input" placeholder="Document title">
-    <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
-    <button id="textPdf" class="primary wide">📝 Export Text as PDF</button>
-  </section>
+      <section id="designer" class="tab">
+        <div class="panel"><div class="panel-head"><div><h2>Page Designer</h2><p>Design a clean document page.</p></div><button class="primary" id="applyDesign">Apply Design</button></div>
+          <div class="design-grid">
+            <div class="templates"><h3>Templates</h3><button data-template="report">📘 Report</button><button data-template="invoice">🧾 Invoice</button><button data-template="resume">💼 Resume</button><button data-template="notes">📝 Notes</button></div>
+            <div class="design-form">
+              <label>Accent <input id="accent" type="color" value="#7c3aed"></label>
+              <label>Background <input id="bg" type="color" value="#ffffff"></label>
+              <label>Text <input id="textColor" type="color" value="#172033"></label>
+              <label>Header <input id="header" value="My Professional Document"></label>
+              <label>Title <input id="designTitle" value="Document Title"></label>
+              <label>Body <textarea id="designBody">Write your document content here. Keep it clear, structured and professional.</textarea></label>
+              <label>Footer <input id="footer" value="Generated with PDF Maker Studio"></label>
+            </div>
+            <div id="preview" class="paper"><div class="paper-header"></div><h1></h1><p></p><div class="paper-footer"></div></div>
+          </div>
+        </div>
+      </section>
 
-  <section>
-    <h2 class="recent-title">Recent files</h2>
-    <div id="recent" class="recent"></div>
-  </section>
-</main>
+      <section id="editor" class="tab">
+        <div class="panel"><div class="panel-head"><div><h2>Document Editor</h2><p>Write and format content before exporting.</p></div><button class="primary" id="editorExport">Export Edited PDF</button></div>
+          <div class="toolbar"><button data-cmd="bold"><b>B</b></button><button data-cmd="italic"><i>I</i></button><button data-cmd="underline"><u>U</u></button><button data-cmd="insertUnorderedList">• List</button><button id="mark">🖍 Highlight</button><button id="note">🗒 Note</button><button id="divider">— Divider</button></div>
+          <div id="editorPage" class="editor-page" contenteditable="true"><h1>My Document</h1><p>Start typing here...</p><p>Add headings, lists and notes, then export your document as a PDF.</p></div>
+        </div>
+      </section>
 
-<footer>PDF Maker • Files are processed in your browser</footer>
+      <section id="utilities" class="tab">
+        <div class="panel"><div class="panel-head"><div><h2>PDF Tools</h2><p>Real browser-side operations using pdf-lib.</p></div></div>
+          <div class="tool-grid">
+            <button class="tool" onclick="openTool('merge')"><b>🔗 Merge PDFs</b><span>Combine files</span></button>
+            <button class="tool" onclick="openTool('split')"><b>✂️ Split PDF</b><span>Extract page range</span></button>
+            <button class="tool" onclick="openTool('rotate')"><b>🔄 Rotate Pages</b><span>Rotate selected pages</span></button>
+            <button class="tool" onclick="openTool('delete')"><b>🗑 Delete Pages</b><span>Remove page numbers</span></button>
+            <button class="tool" onclick="openTool('reorder')"><b>↕️ Reorder Pages</b><span>Change page order</span></button>
+            <button class="tool" onclick="openTool('watermark')"><b>💧 Watermark</b><span>Add text watermark</span></button>
+            <button class="tool" onclick="openTool('numbers')"><b>🔢 Page Numbers</b><span>Number every page</span></button>
+            <button class="tool" onclick="openTool('optimize')"><b>⚡ Optimize</b><span>Save with optimized objects</span></button>
+            <button class="tool" onclick="openTool('images')"><b>🖼 PDF → Images</b><span>Browser preview/export helper</span></button>
+            <button class="tool disabled"><b>🔐 Password</b><span>Requires encryption engine</span></button>
+          </div>
+          <div id="toolWorkspace" class="tool-workspace hidden"></div>
+        </div>
+      </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="script.js"></script>
+      <section id="files" class="tab">
+        <div class="panel"><div class="panel-head"><div><h2>My Files</h2><p>Recent exports from this browser session.</p></div><button class="secondary" onclick="clearHistory()">Clear History</button></div><div id="history" class="history"></div></div>
+      </section>
+    </main>
+  </div>
+  <div id="toast"></div>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Maker Studio V4</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon">✦</div><div><b>PDF Maker</b><small>Studio V4</small></div></div>
+      <nav>
+        <button class="nav active" data-tab="dashboard">🏠 Dashboard</button>
+        <button class="nav" data-tab="builder">📄 PDF Builder</button>
+        <button class="nav" data-tab="designer">🎨 Page Designer</button>
+        <button class="nav" data-tab="editor">✍️ Editor</button>
+        <button class="nav" data-tab="utilities">🛠 PDF Tools</button>
+        <button class="nav" data-tab="files">📁 My Files</button>
+      </nav>
+      <div class="side-card"><b>V4 Engine</b><p>Browser-side PDF operations powered by pdf-lib.</p></div>
+      <button id="themeBtn" class="theme">🌙 Toggle Theme</button>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><span class="eyebrow">CREATIVE DOCUMENT WORKSPACE</span><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><button class="glass" onclick="showTab('builder')">＋ New PDF</button></div>
+      </header>
+
+      <section id="dashboard" class="tab active">
+        <div class="hero">
+          <div><span class="pill">✨ V4 • Enhanced PDF Engine</span><h2>Create, design & manage PDFs</h2>
+          <p>Build documents, edit pages, merge files, reorder pages, add watermarks and export directly in your browser.</p>
+          <button class="primary" onclick="showTab('builder')">Start Creating →</button></div>
+          <div class="orb"><span>PDF</span></div>
+        </div>
+        <div class="stats"><div><b id="statPages">0</b><span>Builder Pages</span></div><div><b>10+</b><span>PDF Tools</span></div><div><b>100%</b><span>Local Processing</span></div><div><b>V4</b><span>Engine</span></div></div>
+        <div class="section-title"><h3>Quick Actions</h3></div>
+        <div class="cards">
+          <div class="card" onclick="showTab('builder')"><i>🖼️</i><h3>Images → PDF</h3><p>Turn multiple images into a polished PDF.</p></div>
+          <div class="card" onclick="showTab('utilities')"><i>🔗</i><h3>Merge PDFs</h3><p>Combine multiple PDF files into one document.</p></div>
+          <div class="card" onclick="showTab('utilities')"><i>✂️</i><h3>Split PDF</h3><p>Extract selected pages into a new PDF.</p></div>
+          <div class="card" onclick="showTab('designer')"><i>🎨</i><h3>Design Page</h3><p>Apply colors, headers and footer styling.</p></div>
+        </div>
+      </section>
+
+      <section id="builder" class="tab">
+        <div class="panel">
+          <div class="panel-head"><div><h2>PDF Builder</h2><p>Arrange pages visually, then export.</p></div>
+          <div class="actions"><label class="secondary">＋ Add Images<input id="imageInput" type="file" accept="image/*" multiple hidden></label><button class="secondary" id="blankBtn">＋ Blank Page</button><button class="danger" id="clearBtn">Clear</button><button class="primary" id="exportBtn">Export PDF</button></div></div>
+          <div class="builder-grid">
+            <div id="dropZone" class="dropzone"><div class="drop-icon">☁</div><h3>Drop images here</h3><p>or use “Add Images” above</p><small>Drag thumbnails to reorder pages</small></div>
+            <div class="settings">
+              <h3>Document Settings</h3>
+              <label>Page Size<select id="pageSize"><option value="a4">A4</option><option value="letter">Letter</option><option value="a5">A5</option></select></label>
+              <label>Orientation<select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+              <label>Margin <input id="margin" type="range" min="0" max="30" value="8"><span id="marginVal">8 mm</span></label>
+              <label>JPEG Quality <input id="quality" type="range" min="0.5" max="1" step="0.05" value="0.85"><span id="qualityVal">85%</span></label>
+              <div class="tip">💡 Drag a page thumbnail to change its position.</div>
+            </div>
+          </div>
+          <div class="thumb-head"><h3>Pages</h3><span id="pageCount">0 pages</span></div>
+          <div id="thumbs" class="thumbs"></div>
+        </div>
+      </section>
+
+      <section id="designer" class="tab">
+        <div class="panel"><div class="panel-head"><div><h2>Page Designer</h2><p>Design a clean document page.</p></div><button class="primary" id="applyDesign">Apply Design</button></div>
+          <div class="design-grid">
+            <div class="templates"><h3>Templates</h3><button data-template="report">📘 Report</button><button data-template="invoice">🧾 Invoice</button><button data-template="resume">💼 Resume</button><button data-template="notes">📝 Notes</button></div>
+            <div class="design-form">
+              <label>Accent <input id="accent" type="color" value="#7c3aed"></label>
+              <label>Background <input id="bg" type="color" value="#ffffff"></label>
+              <label>Text <input id="textColor" type="color" value="#172033"></label>
+              <label>Header <input id="header" value="My Professional Document"></label>
+              <label>Title <input id="designTitle" value="Document Title"></label>
+              <label>Body <textarea id="designBody">Write your document content here. Keep it clear, structured and professional.</textarea></label>
+              <label>Footer <input id="footer" value="Generated with PDF Maker Studio"></label>
+            </div>
+            <div id="preview" class="paper"><div class="paper-header"></div><h1></h1><p></p><div class="paper-footer"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="editor" class="tab">
+        <div class="panel"><div class="panel-head"><div><h2>Document Editor</h2><p>Write and format content before exporting.</p></div><button class="primary" id="editorExport">Export Edited PDF</button></div>
+          <div class="toolbar"><button data-cmd="bold"><b>B</b></button><button data-cmd="italic"><i>I</i></button><button data-cmd="underline"><u>U</u></button><button data-cmd="insertUnorderedList">• List</button><button id="mark">🖍 Highlight</button><button id="note">🗒 Note</button><button id="divider">— Divider</button></div>
+          <div id="editorPage" class="editor-page" contenteditable="true"><h1>My Document</h1><p>Start typing here...</p><p>Add headings, lists and notes, then export your document as a PDF.</p></div>
+        </div>
+      </section>
+
+      <section id="utilities" class="tab">
+        <div class="panel"><div class="panel-head"><div><h2>PDF Tools</h2><p>Real browser-side operations using pdf-lib.</p></div></div>
+          <div class="tool-grid">
+            <button class="tool" onclick="openTool('merge')"><b>🔗 Merge PDFs</b><span>Combine files</span></button>
+            <button class="tool" onclick="openTool('split')"><b>✂️ Split PDF</b><span>Extract page range</span></button>
+            <button class="tool" onclick="openTool('rotate')"><b>🔄 Rotate Pages</b><span>Rotate selected pages</span></button>
+            <button class="tool" onclick="openTool('delete')"><b>🗑 Delete Pages</b><span>Remove page numbers</span></button>
+            <button class="tool" onclick="openTool('reorder')"><b>↕️ Reorder Pages</b><span>Change page order</span></button>
+            <button class="tool" onclick="openTool('watermark')"><b>💧 Watermark</b><span>Add text watermark</span></button>
+            <button class="tool" onclick="openTool('numbers')"><b>🔢 Page Numbers</b><span>Number every page</span></button>
+            <button class="tool" onclick="openTool('optimize')"><b>⚡ Optimize</b><span>Save with optimized objects</span></button>
+            <button class="tool" onclick="openTool('images')"><b>🖼 PDF → Images</b><span>Browser preview/export helper</span></button>
+            <button class="tool disabled"><b>🔐 Password</b><span>Requires encryption engine</span></button>
+          </div>
+          <div id="toolWorkspace" class="tool-workspace hidden"></div>
+        </div>
+      </section>
+
+      <section id="files" class="tab">
+        <div class="panel"><div class="panel-head"><div><h2>My Files</h2><p>Recent exports from this browser session.</p></div><button class="secondary" onclick="clearHistory()">Clear History</button></div><div id="history" class="history"></div></div>
+      </section>
+    </main>
+  </div>
+  <div id="toast"></div>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
