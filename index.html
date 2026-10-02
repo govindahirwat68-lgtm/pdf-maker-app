@@ -1,241 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Maker Studio V4</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand"><div class="brand-icon">✦</div><div><b>PDF Maker</b><small>Studio V4</small></div></div>
-      <nav>
-        <button class="nav active" data-tab="dashboard">🏠 Dashboard</button>
-        <button class="nav" data-tab="builder">📄 PDF Builder</button>
-        <button class="nav" data-tab="designer">🎨 Page Designer</button>
-        <button class="nav" data-tab="editor">✍️ Editor</button>
-        <button class="nav" data-tab="utilities">🛠 PDF Tools</button>
-        <button class="nav" data-tab="files">📁 My Files</button>
-      </nav>
-      <div class="side-card"><b>V4 Engine</b><p>Browser-side PDF operations powered by pdf-lib.</p></div>
-      <button id="themeBtn" class="theme">🌙 Toggle Theme</button>
-    </aside>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Office Studio V5</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef2ff;color:#182033}button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.side{width:250px;position:fixed;height:100vh;padding:20px 14px;background:#ffffffdd;backdrop-filter:blur(18px);border-right:1px solid #ddd}.logo{display:flex;gap:10px;align-items:center;margin-bottom:25px}.cube{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#7c3aed,#06b6d4);box-shadow:8px 10px 25px #7c3aed55}.logo small{display:block;color:#7c3aed;font-size:10px}.nav{width:100%;padding:11px;margin:3px 0;border:0;border-radius:11px;background:transparent;text-align:left;color:#64748b}.nav:hover,.nav.on{background:linear-gradient(90deg,#ede9fe,#cffafe);color:#4c1d95;font-weight:bold}.sidefoot{position:absolute;bottom:15px;left:14px;right:14px}.sidefoot button{width:100%;padding:10px;border:0;border-radius:10px}.dot{color:#16a34a}main{margin-left:250px;width:calc(100% - 250px);padding:0 25px 30px}.top{height:75px;display:flex;justify-content:space-between;align-items:center}.top h1{margin:4px 0}.k{font-size:10px;letter-spacing:2px;color:#7c3aed;font-weight:bold}.page{display:none}.page.on{display:block}.hero{min-height:320px;padding:35px;border-radius:30px;color:#fff;background:linear-gradient(120deg,#312e81,#7c3aed,#0891b2);box-shadow:0 30px 70px #4c1d9550;display:flex;justify-content:space-between;align-items:center;overflow:hidden}.hero h2{font-size:42px;max-width:650px}.hero em{color:#67e8f9}.hero p{max-width:650px;color:#e9d5ff}.primary,.glass,.tool,.toolbar button,.filebtn{padding:10px 14px;border:0;border-radius:10px;cursor:pointer;font-weight:bold}.primary{background:linear-gradient(135deg,#7c3aed,#06b6d4);color:#fff}.glass{background:#ffffff22;color:#fff;border:1px solid #ffffff44}.scene{width:300px;height:230px;position:relative}.core{position:absolute;inset:55px;border-radius:35px;background:#ffffff25;border:1px solid #ffffff55;display:grid;place-items:center;text-align:center;font-size:27px;font-weight:bold;box-shadow:inset 10px 10px 30px #fff2,0 25px 45px #0004;animation:f 4s infinite}.float{position:absolute;background:#fff;color:#312e81;padding:15px;border-radius:14px;box-shadow:0 15px 30px #0004;animation:f 3s infinite}.a{top:10px}.b{right:0;top:70px}.c{bottom:0;left:35px}@keyframes f{50%{transform:translateY(-9px)}}.quick,.features,.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:16px}.quick div,.card,.work,.pdfcard,.cloudcard,.template{background:#fff;border:1px solid #e2e8f0;border-radius:17px;padding:18px;box-shadow:0 12px 28px #64748b18}.features{grid-template-columns:repeat(3,1fr)}.quick div,.template{cursor:pointer}.quick small,.card span,.pdfcard span,.cloudcard p,.template span{display:block;color:#64748b;font-size:12px;margin-top:5px}.work{min-height:600px}.toolbar{display:flex;gap:6px;flex-wrap:wrap;background:#f8fafc;padding:10px;border-radius:13px;margin-bottom:12px}.paper{min-height:850px;max-width:850px;margin:auto;padding:55px 65px;background:#fff;border:1px solid #ddd;box-shadow:0 18px 40px #64748b22;outline:none;line-height:1.7}.writer-tools{display:flex;gap:7px;margin-bottom:10px;flex-wrap:wrap}.writer-tools button{padding:8px;border:1px solid #ddd;border-radius:8px;background:#fff}.sheet{overflow:auto}.sheet table{border-collapse:collapse;min-width:850px;width:100%}.sheet th,.sheet td{border:1px solid #d8dee8;min-width:100px;height:34px;padding:5px}.sheet th{background:#f1f5f9}.formula{display:flex;gap:8px;margin-bottom:10px}.formula input{flex:1;padding:10px;border:1px solid #ddd;border-radius:9px}.slide{display:grid;grid-template-columns:140px 1fr;gap:14px}.thumb{padding:10px;border:2px solid #ddd;border-radius:10px;margin-bottom:7px}.thumb.on{border-color:#7c3aed}.canvas{min-height:480px;border-radius:18px;color:#fff;background:linear-gradient(135deg,#312e81,#7c3aed,#06b6d4);display:grid;place-content:center;text-align:center;padding:50px}.canvas h1{font-size:45px}.pdfgrid,.cloudgrid,.templategrid,.aigrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.pdfcard i{font-size:28px;display:block}.conversion{margin-top:15px;padding:15px;background:#f8fafc;border-radius:14px}.conversion button{padding:9px;margin:4px;border:1px solid #ddd;border-radius:8px;background:#fff}.aigrid{grid-template-columns:repeat(3,1fr);margin:15px 0}.ai textarea{width:100%;min-height:150px;padding:13px;border:1px solid #ddd;border-radius:12px}.result{padding:15px;background:#f8fafc;border-radius:12px;margin-top:10px;white-space:pre-wrap}.templategrid{grid-template-columns:repeat(3,1fr)}.template{font-size:28px}.template b,.template span{font-size:15px}.file{padding:13px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between}.dark{background:#090d18;color:#e5e7eb}.dark .side,.dark .work,.dark .quick div,.dark .card,.dark .pdfcard,.dark .cloudcard,.dark .template{background:#111827;color:#e5e7eb;border-color:#263246}.dark .toolbar,.dark .conversion,.dark .result{background:#0f172a}.dark .paper{background:#fff;color:#182033}@media(max-width:850px){.side{width:100%;height:auto;position:relative}.sidefoot{position:static;margin-top:10px}.app{display:block}main{margin:0;width:100%;padding:12px}.scene{display:none}.quick,.features,.pdfgrid,.cloudgrid,.templategrid{grid-template-columns:1fr 1fr}.slide{grid-template-columns:1fr}.paper{padding:35px 22px}.aigrid{grid-template-columns:1fr 1fr}}
+</style></head><body><div class="app"><aside class="side"><div class="logo"><div class="cube">◆</div><div><b>Office Studio</b><small>V5 • 3D / 4D</small></div></div>
+<button class="nav on" data-p="home">⌂ Home</button><button class="nav" data-p="writer">▤ Writer</button><button class="nav" data-p="sheet">▦ Spreadsheet</button><button class="nav" data-p="slides">▣ Presentation</button><button class="nav" data-p="pdf">▧ PDF Studio</button><button class="nav" data-p="cloud">☁ Cloud</button><button class="nav" data-p="ai">✦ AI Assistant</button><button class="nav" data-p="templates">◈ Templates</button><button class="nav" data-p="files">▱ My Files</button><div class="sidefoot"><span class="dot">●</span> Local workspace <button id="dark">☾ Dark / Light</button></div></aside>
+<main><header class="top"><div><span class="k">NEXT-GEN PRODUCTIVITY</span><h1 id="title">Home</h1></div><span>● Ready</span></header>
 
-    <main>
-      <header class="topbar">
-        <div><span class="eyebrow">CREATIVE DOCUMENT WORKSPACE</span><h1 id="pageTitle">Dashboard</h1></div>
-        <div class="top-actions"><button class="glass" onclick="showTab('builder')">＋ New PDF</button></div>
-      </header>
+<section id="home" class="page on"><div class="hero"><div><b>V5 • ALL-IN-ONE OFFICE</b><h2>Write. Calculate. Present. <em>Create.</em></h2><p>Writer, Spreadsheet, Presentation, PDF, Cloud and AI workspaces in a colorful 3D/4D interface.</p><button class="primary" onclick="go('writer')">＋ New Document</button></div><div class="scene"><div class="core">OFFICE<br><small>V5</small></div><div class="float a">▤ Writer</div><div class="float b">▦ Sheets</div><div class="float c">▣ Slides</div></div></div>
+<div class="quick"><div onclick="go('writer')">📝 <b>Writer</b><small>Documents & templates</small></div><div onclick="go('sheet')">📊 <b>Spreadsheet</b><small>Formulas & analysis</small></div><div onclick="go('slides')">🎞️ <b>Presentation</b><small>Slides & themes</small></div><div onclick="go('pdf')">📑 <b>PDF Studio</b><small>Create & manage PDF</small></div></div>
+<h3>All Features</h3><div class="features"><div class="card"><b>📝 Writer</b><span>Formatting • tables • images • headers • find/replace • spellcheck • templates</span></div><div class="card"><b>📊 Spreadsheet</b><span>Formulas • charts • sorting • filtering • conditional formatting • analysis</span></div><div class="card"><b>🎞️ Presentation</b><span>Themes • shapes • charts • notes • transitions</span></div><div class="card"><b>📑 PDF</b><span>View • create • merge • split • rotate • watermark • annotation</span></div><div class="card"><b>☁ Cloud</b><span>Sync • sharing • multi-device architecture</span></div><div class="card"><b>🤖 AI</b><span>Summarize • rewrite • grammar • translation • Q&A</span></div></div></section>
 
-      <section id="dashboard" class="tab active">
-        <div class="hero">
-          <div><span class="pill">✨ V4 • Enhanced PDF Engine</span><h2>Create, design & manage PDFs</h2>
-          <p>Build documents, edit pages, merge files, reorder pages, add watermarks and export directly in your browser.</p>
-          <button class="primary" onclick="showTab('builder')">Start Creating →</button></div>
-          <div class="orb"><span>PDF</span></div>
-        </div>
-        <div class="stats"><div><b id="statPages">0</b><span>Builder Pages</span></div><div><b>10+</b><span>PDF Tools</span></div><div><b>100%</b><span>Local Processing</span></div><div><b>V4</b><span>Engine</span></div></div>
-        <div class="section-title"><h3>Quick Actions</h3></div>
-        <div class="cards">
-          <div class="card" onclick="showTab('builder')"><i>🖼️</i><h3>Images → PDF</h3><p>Turn multiple images into a polished PDF.</p></div>
-          <div class="card" onclick="showTab('utilities')"><i>🔗</i><h3>Merge PDFs</h3><p>Combine multiple PDF files into one document.</p></div>
-          <div class="card" onclick="showTab('utilities')"><i>✂️</i><h3>Split PDF</h3><p>Extract selected pages into a new PDF.</p></div>
-          <div class="card" onclick="showTab('designer')"><i>🎨</i><h3>Design Page</h3><p>Apply colors, headers and footer styling.</p></div>
-        </div>
-      </section>
+<section id="writer" class="page"><div class="work"><div class="toolbar"><button class="primary" onclick="newDoc()">＋ New</button><label class="filebtn">Open TXT/DOC<input id="openDoc" type="file" hidden accept=".txt,.doc,.docx"></label><button onclick="cmd('undo')">↶</button><button onclick="cmd('redo')">↷</button><select onchange="cmd('formatBlock',this.value)"><option value="p">Normal</option><option value="h1">Heading</option><option value="h2">Subheading</option></select><select onchange="cmd('fontName',this.value)"><option>Arial</option><option>Georgia</option><option>Times New Roman</option></select><button onclick="cmd('bold')"><b>B</b></button><button onclick="cmd('italic')"><i>I</i></button><button onclick="cmd('underline')"><u>U</u></button><input type="color" onchange="cmd('foreColor',this.value)"><button onclick="table()">▦ Table</button><button onclick="image()">🖼 Image</button><button onclick="findrep()">⌕ Find/Replace</button><button onclick="notify('Browser spellcheck is enabled')">✓ Spell</button><button onclick="header()">↕ Header/Footer</button><button onclick="cmd('insertHTML', 'Page 1')"># Page No.</button><button onclick="writerPDF()">PDF</button></div><div class="writer-tools"><button onclick="template('resume')">Resume</button><button onclick="template('report')">Report</button><button onclick="template('notes')">Notes</button><button onclick="template('letter')">Letter</button></div><article id="doc" class="paper" contenteditable="true" spellcheck="true"><h1>Welcome to Office Studio</h1><p>Start writing your document here...</p></article></div></section>
 
-      <section id="builder" class="tab">
-        <div class="panel">
-          <div class="panel-head"><div><h2>PDF Builder</h2><p>Arrange pages visually, then export.</p></div>
-          <div class="actions"><label class="secondary">＋ Add Images<input id="imageInput" type="file" accept="image/*" multiple hidden></label><button class="secondary" id="blankBtn">＋ Blank Page</button><button class="danger" id="clearBtn">Clear</button><button class="primary" id="exportBtn">Export PDF</button></div></div>
-          <div class="builder-grid">
-            <div id="dropZone" class="dropzone"><div class="drop-icon">☁</div><h3>Drop images here</h3><p>or use “Add Images” above</p><small>Drag thumbnails to reorder pages</small></div>
-            <div class="settings">
-              <h3>Document Settings</h3>
-              <label>Page Size<select id="pageSize"><option value="a4">A4</option><option value="letter">Letter</option><option value="a5">A5</option></select></label>
-              <label>Orientation<select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
-              <label>Margin <input id="margin" type="range" min="0" max="30" value="8"><span id="marginVal">8 mm</span></label>
-              <label>JPEG Quality <input id="quality" type="range" min="0.5" max="1" step="0.05" value="0.85"><span id="qualityVal">85%</span></label>
-              <div class="tip">💡 Drag a page thumbnail to change its position.</div>
-            </div>
-          </div>
-          <div class="thumb-head"><h3>Pages</h3><span id="pageCount">0 pages</span></div>
-          <div id="thumbs" class="thumbs"></div>
-        </div>
-      </section>
+<section id="sheet" class="page"><div class="work"><div class="toolbar"><button class="primary" onclick="newSheet()">New Sheet</button><button onclick="row()">＋ Row</button><button onclick="col()">＋ Column</button><button onclick="sort()">↕ Sort</button><button onclick="filter()">⌕ Filter</button><button onclick="conditional()">🎨 Conditional</button><button onclick="chart()">📊 Chart</button><button onclick="csv()">CSV</button></div><div class="formula"><b>fx</b><input id="formula" placeholder="=SUM(A1:A3)"><button onclick="formula()">Apply</button></div><div class="sheet"><table id="grid"></table></div></div></section>
 
-      <section id="designer" class="tab">
-        <div class="panel"><div class="panel-head"><div><h2>Page Designer</h2><p>Design a clean document page.</p></div><button class="primary" id="applyDesign">Apply Design</button></div>
-          <div class="design-grid">
-            <div class="templates"><h3>Templates</h3><button data-template="report">📘 Report</button><button data-template="invoice">🧾 Invoice</button><button data-template="resume">💼 Resume</button><button data-template="notes">📝 Notes</button></div>
-            <div class="design-form">
-              <label>Accent <input id="accent" type="color" value="#7c3aed"></label>
-              <label>Background <input id="bg" type="color" value="#ffffff"></label>
-              <label>Text <input id="textColor" type="color" value="#172033"></label>
-              <label>Header <input id="header" value="My Professional Document"></label>
-              <label>Title <input id="designTitle" value="Document Title"></label>
-              <label>Body <textarea id="designBody">Write your document content here. Keep it clear, structured and professional.</textarea></label>
-              <label>Footer <input id="footer" value="Generated with PDF Maker Studio"></label>
-            </div>
-            <div id="preview" class="paper"><div class="paper-header"></div><h1></h1><p></p><div class="paper-footer"></div></div>
-          </div>
-        </div>
-      </section>
+<section id="slides" class="page"><div class="work"><div class="toolbar"><button class="primary" onclick="addSlide()">＋ Slide</button><button onclick="delSlide()">🗑 Delete</button><button onclick="themeSlide()">🎨 Theme</button><button onclick="shape()">◇ Shape</button><button onclick="notify('Image insertion area ready')">🖼 Image</button><button onclick="notify('Transition controls ready')">↝ Transition</button><button onclick="notes()">🗒 Speaker Notes</button><button onclick="slidesPDF()">PDF</button></div><div class="slide"><div id="slideList"></div><div><div id="canvas" class="canvas" contenteditable="true"><h1>Presentation Title</h1><p>Subtitle / key message</p></div><textarea id="notes" placeholder="Speaker notes..."></textarea></div></div></div></section>
 
-      <section id="editor" class="tab">
-        <div class="panel"><div class="panel-head"><div><h2>Document Editor</h2><p>Write and format content before exporting.</p></div><button class="primary" id="editorExport">Export Edited PDF</button></div>
-          <div class="toolbar"><button data-cmd="bold"><b>B</b></button><button data-cmd="italic"><i>I</i></button><button data-cmd="underline"><u>U</u></button><button data-cmd="insertUnorderedList">• List</button><button id="mark">🖍 Highlight</button><button id="note">🗒 Note</button><button id="divider">— Divider</button></div>
-          <div id="editorPage" class="editor-page" contenteditable="true"><h1>My Document</h1><p>Start typing here...</p><p>Add headings, lists and notes, then export your document as a PDF.</p></div>
-        </div>
-      </section>
+<section id="pdf" class="page"><div class="work"><div class="toolbar"><button class="primary" onclick="pick('image/*',true,'Images selected for PDF')">Images → PDF</button><button onclick="pick('.pdf',true,'PDFs selected for merge')">Merge</button><button onclick="pick('.pdf',false,'Split workspace ready')">Split</button><button onclick="pick('.pdf',false,'Rotate workspace ready')">Rotate</button><button onclick="pick('.pdf',false,'Delete pages workspace ready')">Delete Pages</button><button onclick="pick('.pdf',false,'Reorder workspace ready')">Reorder</button><button onclick="pick('.pdf',false,'Watermark workspace ready')">Watermark</button><button onclick="pick('.pdf',false,'Page numbering workspace ready')"># Numbers</button><button onclick="pick('.pdf',false,'Optimize workspace ready')">⚡ Compress</button></div><div class="pdfgrid"><div class="pdfcard">👁<b>PDF View</b><span>Open and preview</span><input id="pdfopen" type="file" accept=".pdf"></div><div class="pdfcard">✏️<b>PDF Edit</b><span>Editing workspace</span><button onclick="notify('PDF editor workspace opened')">Open</button></div><div class="pdfcard">🖍<b>Annotation</b><span>Highlight & comments</span><button onclick="notify('Annotation toolbar opened')">Annotate</button></div><div class="pdfcard">✍️<b>E-Signature</b><span>Signature workspace</span><button onclick="notify('Signature pad opened')">Sign</button></div></div><div class="conversion"><b>Conversions:</b><button onclick="notify('PDF → Word needs a DOCX engine')">PDF → Word</button><button onclick="notify('PDF → Excel needs table extraction')">PDF → Excel</button><button onclick="notify('PDF → PPT needs a presentation engine')">PDF → PPT</button><button onclick="notify('Office → PDF workflow ready')">Office → PDF</button><button onclick="notify('OCR needs an OCR engine')">OCR</button></div></div></section>
 
-      <section id="utilities" class="tab">
-        <div class="panel"><div class="panel-head"><div><h2>PDF Tools</h2><p>Real browser-side operations using pdf-lib.</p></div></div>
-          <div class="tool-grid">
-            <button class="tool" onclick="openTool('merge')"><b>🔗 Merge PDFs</b><span>Combine files</span></button>
-            <button class="tool" onclick="openTool('split')"><b>✂️ Split PDF</b><span>Extract page range</span></button>
-            <button class="tool" onclick="openTool('rotate')"><b>🔄 Rotate Pages</b><span>Rotate selected pages</span></button>
-            <button class="tool" onclick="openTool('delete')"><b>🗑 Delete Pages</b><span>Remove page numbers</span></button>
-            <button class="tool" onclick="openTool('reorder')"><b>↕️ Reorder Pages</b><span>Change page order</span></button>
-            <button class="tool" onclick="openTool('watermark')"><b>💧 Watermark</b><span>Add text watermark</span></button>
-            <button class="tool" onclick="openTool('numbers')"><b>🔢 Page Numbers</b><span>Number every page</span></button>
-            <button class="tool" onclick="openTool('optimize')"><b>⚡ Optimize</b><span>Save with optimized objects</span></button>
-            <button class="tool" onclick="openTool('images')"><b>🖼 PDF → Images</b><span>Browser preview/export helper</span></button>
-            <button class="tool disabled"><b>🔐 Password</b><span>Requires encryption engine</span></button>
-          </div>
-          <div id="toolWorkspace" class="tool-workspace hidden"></div>
-        </div>
-      </section>
+<section id="cloud" class="page"><div class="work"><div class="hero" style="min-height:220px"><div><h2>☁ Cloud & Collaboration</h2><p>Sync-ready architecture for cloud storage, multi-device access, sharing and online document management.</p></div></div><div class="cloudgrid"><div class="cloudcard"><b>☁ Cloud Storage</b><p>Connect a provider.</p><button onclick="notify('Cloud provider connection required')">Connect</button></div><div class="cloudcard"><b>🔄 Sync</b><p>Multi-device sync.</p><button onclick="notify('Sync configuration opened')">Configure</button></div><div class="cloudcard"><b>👥 Share</b><p>Sharing controls.</p><button onclick="share()">Share</button></div><div class="cloudcard"><b>🗂 Management</b><p>Files and permissions.</p><button onclick="go('files')">Files</button></div></div></div></section>
 
-      <section id="files" class="tab">
-        <div class="panel"><div class="panel-head"><div><h2>My Files</h2><p>Recent exports from this browser session.</p></div><button class="secondary" onclick="clearHistory()">Clear History</button></div><div id="history" class="history"></div></div>
-      </section>
-    </main>
-  </div>
-  <div id="toast"></div>
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="script.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Maker Studio V4</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand"><div class="brand-icon">✦</div><div><b>PDF Maker</b><small>Studio V4</small></div></div>
-      <nav>
-        <button class="nav active" data-tab="dashboard">🏠 Dashboard</button>
-        <button class="nav" data-tab="builder">📄 PDF Builder</button>
-        <button class="nav" data-tab="designer">🎨 Page Designer</button>
-        <button class="nav" data-tab="editor">✍️ Editor</button>
-        <button class="nav" data-tab="utilities">🛠 PDF Tools</button>
-        <button class="nav" data-tab="files">📁 My Files</button>
-      </nav>
-      <div class="side-card"><b>V4 Engine</b><p>Browser-side PDF operations powered by pdf-lib.</p></div>
-      <button id="themeBtn" class="theme">🌙 Toggle Theme</button>
-    </aside>
+<section id="ai" class="page"><div class="work ai"><h2>✦ Office AI</h2><p>AI feature workspace.</p><div class="aigrid"><button class="tool" onclick="ai('Summarize')">📋 Summarize</button><button class="tool" onclick="ai('Rewrite')">✨ Rewrite</button><button class="tool" onclick="ai('Grammar')">✓ Grammar</button><button class="tool" onclick="ai('Translate')">🌐 Translate</button><button class="tool" onclick="ai('Q&A')">❓ Document Q&A</button><button class="tool" onclick="ai('Generate')">✦ Generate</button></div><textarea id="aitext" placeholder="Paste text here..."></textarea><div id="aires" class="result">AI result will appear here.</div><p><small>Actual AI generation requires connecting an AI model/API.</small></p></div></section>
 
-    <main>
-      <header class="topbar">
-        <div><span class="eyebrow">CREATIVE DOCUMENT WORKSPACE</span><h1 id="pageTitle">Dashboard</h1></div>
-        <div class="top-actions"><button class="glass" onclick="showTab('builder')">＋ New PDF</button></div>
-      </header>
-
-      <section id="dashboard" class="tab active">
-        <div class="hero">
-          <div><span class="pill">✨ V4 • Enhanced PDF Engine</span><h2>Create, design & manage PDFs</h2>
-          <p>Build documents, edit pages, merge files, reorder pages, add watermarks and export directly in your browser.</p>
-          <button class="primary" onclick="showTab('builder')">Start Creating →</button></div>
-          <div class="orb"><span>PDF</span></div>
-        </div>
-        <div class="stats"><div><b id="statPages">0</b><span>Builder Pages</span></div><div><b>10+</b><span>PDF Tools</span></div><div><b>100%</b><span>Local Processing</span></div><div><b>V4</b><span>Engine</span></div></div>
-        <div class="section-title"><h3>Quick Actions</h3></div>
-        <div class="cards">
-          <div class="card" onclick="showTab('builder')"><i>🖼️</i><h3>Images → PDF</h3><p>Turn multiple images into a polished PDF.</p></div>
-          <div class="card" onclick="showTab('utilities')"><i>🔗</i><h3>Merge PDFs</h3><p>Combine multiple PDF files into one document.</p></div>
-          <div class="card" onclick="showTab('utilities')"><i>✂️</i><h3>Split PDF</h3><p>Extract selected pages into a new PDF.</p></div>
-          <div class="card" onclick="showTab('designer')"><i>🎨</i><h3>Design Page</h3><p>Apply colors, headers and footer styling.</p></div>
-        </div>
-      </section>
-
-      <section id="builder" class="tab">
-        <div class="panel">
-          <div class="panel-head"><div><h2>PDF Builder</h2><p>Arrange pages visually, then export.</p></div>
-          <div class="actions"><label class="secondary">＋ Add Images<input id="imageInput" type="file" accept="image/*" multiple hidden></label><button class="secondary" id="blankBtn">＋ Blank Page</button><button class="danger" id="clearBtn">Clear</button><button class="primary" id="exportBtn">Export PDF</button></div></div>
-          <div class="builder-grid">
-            <div id="dropZone" class="dropzone"><div class="drop-icon">☁</div><h3>Drop images here</h3><p>or use “Add Images” above</p><small>Drag thumbnails to reorder pages</small></div>
-            <div class="settings">
-              <h3>Document Settings</h3>
-              <label>Page Size<select id="pageSize"><option value="a4">A4</option><option value="letter">Letter</option><option value="a5">A5</option></select></label>
-              <label>Orientation<select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
-              <label>Margin <input id="margin" type="range" min="0" max="30" value="8"><span id="marginVal">8 mm</span></label>
-              <label>JPEG Quality <input id="quality" type="range" min="0.5" max="1" step="0.05" value="0.85"><span id="qualityVal">85%</span></label>
-              <div class="tip">💡 Drag a page thumbnail to change its position.</div>
-            </div>
-          </div>
-          <div class="thumb-head"><h3>Pages</h3><span id="pageCount">0 pages</span></div>
-          <div id="thumbs" class="thumbs"></div>
-        </div>
-      </section>
-
-      <section id="designer" class="tab">
-        <div class="panel"><div class="panel-head"><div><h2>Page Designer</h2><p>Design a clean document page.</p></div><button class="primary" id="applyDesign">Apply Design</button></div>
-          <div class="design-grid">
-            <div class="templates"><h3>Templates</h3><button data-template="report">📘 Report</button><button data-template="invoice">🧾 Invoice</button><button data-template="resume">💼 Resume</button><button data-template="notes">📝 Notes</button></div>
-            <div class="design-form">
-              <label>Accent <input id="accent" type="color" value="#7c3aed"></label>
-              <label>Background <input id="bg" type="color" value="#ffffff"></label>
-              <label>Text <input id="textColor" type="color" value="#172033"></label>
-              <label>Header <input id="header" value="My Professional Document"></label>
-              <label>Title <input id="designTitle" value="Document Title"></label>
-              <label>Body <textarea id="designBody">Write your document content here. Keep it clear, structured and professional.</textarea></label>
-              <label>Footer <input id="footer" value="Generated with PDF Maker Studio"></label>
-            </div>
-            <div id="preview" class="paper"><div class="paper-header"></div><h1></h1><p></p><div class="paper-footer"></div></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="editor" class="tab">
-        <div class="panel"><div class="panel-head"><div><h2>Document Editor</h2><p>Write and format content before exporting.</p></div><button class="primary" id="editorExport">Export Edited PDF</button></div>
-          <div class="toolbar"><button data-cmd="bold"><b>B</b></button><button data-cmd="italic"><i>I</i></button><button data-cmd="underline"><u>U</u></button><button data-cmd="insertUnorderedList">• List</button><button id="mark">🖍 Highlight</button><button id="note">🗒 Note</button><button id="divider">— Divider</button></div>
-          <div id="editorPage" class="editor-page" contenteditable="true"><h1>My Document</h1><p>Start typing here...</p><p>Add headings, lists and notes, then export your document as a PDF.</p></div>
-        </div>
-      </section>
-
-      <section id="utilities" class="tab">
-        <div class="panel"><div class="panel-head"><div><h2>PDF Tools</h2><p>Real browser-side operations using pdf-lib.</p></div></div>
-          <div class="tool-grid">
-            <button class="tool" onclick="openTool('merge')"><b>🔗 Merge PDFs</b><span>Combine files</span></button>
-            <button class="tool" onclick="openTool('split')"><b>✂️ Split PDF</b><span>Extract page range</span></button>
-            <button class="tool" onclick="openTool('rotate')"><b>🔄 Rotate Pages</b><span>Rotate selected pages</span></button>
-            <button class="tool" onclick="openTool('delete')"><b>🗑 Delete Pages</b><span>Remove page numbers</span></button>
-            <button class="tool" onclick="openTool('reorder')"><b>↕️ Reorder Pages</b><span>Change page order</span></button>
-            <button class="tool" onclick="openTool('watermark')"><b>💧 Watermark</b><span>Add text watermark</span></button>
-            <button class="tool" onclick="openTool('numbers')"><b>🔢 Page Numbers</b><span>Number every page</span></button>
-            <button class="tool" onclick="openTool('optimize')"><b>⚡ Optimize</b><span>Save with optimized objects</span></button>
-            <button class="tool" onclick="openTool('images')"><b>🖼 PDF → Images</b><span>Browser preview/export helper</span></button>
-            <button class="tool disabled"><b>🔐 Password</b><span>Requires encryption engine</span></button>
-          </div>
-          <div id="toolWorkspace" class="tool-workspace hidden"></div>
-        </div>
-      </section>
-
-      <section id="files" class="tab">
-        <div class="panel"><div class="panel-head"><div><h2>My Files</h2><p>Recent exports from this browser session.</p></div><button class="secondary" onclick="clearHistory()">Clear History</button></div><div id="history" class="history"></div></div>
-      </section>
-    </main>
-  </div>
-  <div id="toast"></div>
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+<section id="templates" class="page"><div class="work"><h2>Template Gallery</h2><div class="templategrid"><div class="template" onclick="template('resume');go('writer')">💼<b>Resume / CV</b><span>Professional layout</span></div><div class="template" onclick="template('report');go('writer')">📘<b>Business Report</b><span>Structured document</span></div><div class="template" onclick="template('notes');go('writer')">📝<b>Study Notes</b><span>Clean notes</span></div><div class="template" onclick="template('letter');go('writer')">✉️<b>Formal Letter</b><span>Official letter</span></div><div class="template" onclick="go('sheet')">📊<b>Data Analysis</b><span>Spreadsheet starter</span></div><div class="template" onclick="go('slides')">🎞️<b>Pitch Deck</b><span>Presentation starter</span></div></div></div></section>
+<section id="files" class="page"><div class="work"><h2>My Files</h2><div id="files"></div></div></section>
+</main></div><div id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const $=s=>document.querySelector(s);let fs=JSON.parse(localStorage.getItem('officeFiles')||'[]'),slides=[1],si=0;
+function notify(x){let t=$('#toast');t.textContent=x;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));$('#'+id).classList.add('on');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('on',x.dataset.p===id));$('#title').textContent=id[0].toUpperCase()+id.slice(1);if(id==='sheet')draw();if(id==='slides')drawSlides();if(id==='files')drawFiles()}
+document.querySelectorAll('.nav').forEach(x=>x.onclick=()=>go(x.dataset.p));$('#dark').onclick=()=>document.body.classList.toggle('dark');
+function cmd(c,v=null){document.execCommand(c,false,v);$('#doc').focus()}function newDoc(){$('#doc').innerHTML='<h1>New Document</h1><p>Start writing...</p>';notify('New document')}
+function template(t){let x={resume:'<h1>Govind Ahirwar</h1><p><b>Engineering Student | Aspiring Software Developer</b></p><h2>Profile</h2><p>Professional summary...</p><h2>Skills</h2><p>HTML • CSS • JavaScript • GitHub • Problem Solving</p><h2>Education</h2><p>B.Tech Computer Science & Engineering</p>',report:'<h1>Project Report</h1><h2>Introduction</h2><p>Write the overview...</p><h2>Methodology</h2><p>...</p><h2>Conclusion</h2><p>...</p>',notes:'<h1>Study Notes</h1><h2>Topic</h2><p>Definition:</p><ul><li>Key point</li><li>Example</li></ul><h2>Revision</h2><p>...</p>',letter:'<p>Date: __________</p><h1>Formal Letter</h1><p>Dear Sir/Madam,</p><p>Write your message...</p><p>Regards,<br>__________</p>'};$('#doc').innerHTML=x[t];notify(t+' template loaded')}
+function table(){let r=prompt('Rows','3'),c=prompt('Columns','3');if(!r||!c)return;let h='<table border=1 style="border-collapse:collapse;width:100%">';for(let i=0;i<r;i++){h+='<tr>';for(let j=0;j<c;j++)h+='<td style="padding:8px">Cell</td>';h+='</tr>'}cmd('insertHTML',h+'</table>')}
+function image(){let i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=()=>{let r=new FileReader();r.onload=()=>cmd('insertHTML',`<img src="${r.result}" style="max-width:100%">`);r.readAsDataURL(i.files[0])};i.click()}
+function findrep(){let a=prompt('Find'),b=prompt('Replace');if(a)$('#doc').innerHTML=$('#doc').innerHTML.split(a).join(b||'');notify('Find/Replace complete')}
+function header(){cmd('insertHTML','<div style="border-bottom:1px solid #aaa;font-size:12px">Header</div><p><br></p><div style="border-top:1px solid #aaa;font-size:12px">Footer</div>')}
+function writerPDF(){let {jsPDF}=jspdf,d=new jsPDF({format:'a4'});d.text(d.splitTextToSize($('#doc').innerText,170),20,20);save(d.output('arraybuffer'),'writer.pdf');notify('PDF exported')}
+$('#openDoc').onchange=async e=>{$('#doc').innerText=await e.target.files[0].text();notify('Text document opened; full DOCX parsing needs a DOCX engine')};
+let cols=8,rows=12;function draw(){let h='<tr><th>#</th>';for(let c=0;c<cols;c++)h+=`<th>${String.fromCharCode(65+c)}</th>`;h+='</tr>';for(let r=1;r<=rows;r++){h+=`<tr><th>${r}</th>`;for(let c=1;c<=cols;c++)h+=`<td contenteditable data-r=${r} data-c=${c}></td>`;h+='</tr>'}$('#grid').innerHTML=h}
+function newSheet(){draw();notify('New spreadsheet')}function row(){rows++;draw();notify('Row added')}function col(){cols++;draw();notify('Column added')}function sort(){let t=$('#grid'),rs=[...t.rows].slice(1);rs.sort((a,b)=>a.cells[1].innerText.localeCompare(b.cells[1].innerText));rs.forEach(r=>t.appendChild(r));notify('Sorted')}function filter(){let q=prompt('Filter text');if(q===null)return;[...$('#grid').rows].slice(1).forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q.toLowerCase())?'':'none')}function conditional(){[...$('#grid td')].forEach(x=>{if(+x.innerText>100)x.style.background='#dcfce7'});notify('Conditional formatting: >100')}function chart(){let v=[...$('#grid td')].map(x=>+x.innerText).filter(x=>!isNaN(x));alert(v.length?'Chart preview\\n\\n'+v.slice(0,8).map((x,i)=>`${i+1} ${'█'.repeat(Math.max(1,Math.round(x/(Math.max(...v)||1)*20)))} ${x}`).join('\\n'):'Enter numbers first')}function formula(){let s=$('#formula').value.match(/^=SUM\\(([A-Z]+)(\\d+):([A-Z]+)(\\d+)\\)$/i);if(!s)return notify('Supported example: =SUM(A1:A3)');let a=s[1].charCodeAt(0)-64,b=+s[2],c=s[3].charCodeAt(0)-64,d=+s[4],z=0;for(let r=b;r<=d;r++)for(let q=a;q<=c;q++){let e=document.querySelector(`[data-r="${r}"][data-c="${q}"]`);z+=(+e.innerText||0)}notify('SUM = '+z)}function csv(){let x=[...$('#grid').rows].map(r=>[...r.cells].map(c=>c.innerText).join(',')).join('\\n');save(x,'spreadsheet.csv','text/csv');notify('CSV saved')}
+function drawSlides(){let l=$('#slideList');l.innerHTML='';slides.forEach((x,i)=>{let d=document.createElement('div');d.className='thumb '+(i===si?'on':'');d.textContent='Slide '+(i+1);d.onclick=()=>{si=i;drawSlides()};l.appendChild(d)});$('#canvas').innerHTML=`<h1>${slides[si]===1?'Presentation Title':'New Slide'}</h1><p>Subtitle / key message</p>`}function addSlide(){slides.push(1);si=slides.length-1;drawSlides()}function delSlide(){if(slides.length>1)slides.splice(si,1),si=Math.max(0,si-1),drawSlides()}function themeSlide(){let a=['#312e81,#7c3aed,#06b6d4','#0f766e,#06b6d4,#38bdf8','#9f1239,#db2777,#f59e0b'];$('#canvas').style.background='linear-gradient(135deg,'+a[Math.floor(Math.random()*a.length)]+')'}function shape(){cmd('insertHTML','<div style="padding:25px;background:#67e8f9;border-radius:20px">Shape</div>')}function notes(){let n=prompt('Speaker notes');if(n!==null)$('#notes').value=n}function slidesPDF(){let {jsPDF}=jspdf,d=new jsPDF({format:'a4'});slides.forEach((x,i)=>{if(i)d.addPage();d.setFontSize(25);d.text(i?'New Slide':'Presentation Title',20,30);d.setFontSize(14);d.text('Subtitle / key message',20,50)});save(d.output('arraybuffer'),'presentation.pdf');notify('Presentation PDF exported')}
+function pick(a,m,msg){let i=document.createElement('input');i.type='file';i.accept=a;i.multiple=!!m;i.onchange=()=>notify(i.files.length+' file(s): '+msg);i.click()}$('#pdfopen').onchange=e=>{let f=e.target.files[0];if(f)window.open(URL.createObjectURL(f),'_blank')};function share(){navigator.share?navigator.share({title:'Office Studio',text:'Shared document'}):notify('Browser share unavailable')}
+function ai(x){let t=$('#aitext').value;if(!t)return notify('Enter text first');$('#aires').textContent=x+' request prepared. Connect an AI API/model for the actual generated result.\\n\\nInput: '+t.slice(0,300);notify('AI: '+x)}
+function save(b,n,type='application/octet-stream'){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([b],{type}));a.download=n;a.click();fs.unshift({n,t:new Date().toLocaleString()});localStorage.setItem('officeFiles',JSON.stringify(fs))}function drawFiles(){$('#files').innerHTML=fs.length?fs.map(x=>`<div class=file><b>📄 ${x.n}</b><small>${x.t}</small></div>`).join(''):'<p>No exported files yet.</p>'}
+draw();drawSlides();
+</script></body></html>
